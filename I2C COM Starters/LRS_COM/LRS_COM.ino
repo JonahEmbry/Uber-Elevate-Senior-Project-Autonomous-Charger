@@ -4,6 +4,7 @@
 // In this system, the LRS Mega fuctions as the Master: Z-stage (Device 8) and (CRS Device 9) are slaves
 // This version of the code is meant purely to plug the charger in. We can worry about uplugging it later
 // Include the required Wire library for I2C<br>
+// MAKE SURE ALL BOARDS SHARE COMMON GROUND
 
 
 #include <Wire.h>
