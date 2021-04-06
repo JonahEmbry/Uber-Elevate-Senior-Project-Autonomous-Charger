@@ -7,7 +7,7 @@ const int BUFFER_SIZE = 100;
 char buf[BUFFER_SIZE];
 
 char temp[8];
-int tempcheck = 0;
+int flag = 0;
 
 float Tx; //Need
 float Ty; //Need
@@ -38,19 +38,97 @@ float Rz; //I want it
       Serial.println(buf[i]);
     }
 
-    Serial.println("Starting my code *****************");
-    delay(500);
-    
-    for(int i = 4; i <= 11; i++){
-      temp[tempcheck] = buf[i];
-      Serial.println(temp[tempcheck]);
-      tempcheck++; 
-    }
-    
-    Tx = atof(temp);
 
-    Serial.print("Final Value: ");
-    Serial.println(Tx + 10);
+    Serial.println("Starting my code *****************");
+    for(int i = 0; i < rlen; i++){
+      //Serial.println(buf[i]);
+      if(buf[i] == ' ' && (buf[i-1] == ':' || buf[i-1] == 'x' || buf[i-1] == 'y' || buf[i-1] == 'z')){
+        switch(flag){
+          case(5):
+                for(int ii = i + 1; ii <= i + 8; ii++){
+                  temp[ii - (i+1)] = buf[ii];
+                  Serial.print(temp[ii -(i+1)]);
+                }
+                Serial.println(" Case Five");
+                Rz = atof(temp);
+                flag = 6;
+                break;
+                                
+          case(4):
+                for(int ii = i + 1; ii <= i + 8; ii++){
+                  temp[ii - (i+1)] = buf[ii];
+                  Serial.print(temp[ii -(i+1)]);
+                }
+                Serial.println(" Case Four");
+                Ry = atof(temp);
+                flag = 5;
+                break;
+                                
+          
+          case(3):
+                for(int ii = i + 1; ii <= i + 8; ii++){
+                  temp[ii - (i+1)] = buf[ii];
+                  Serial.print(temp[ii -(i+1)]);
+                }
+                Serial.println(" Case Three");
+                Rx = atof(temp);
+                flag = 4;
+                break;
+                            
+
+          case(2):
+                for(int ii = i + 1; ii <= i + 8; ii++){
+                  temp[ii - (i+1)] = buf[ii];
+                  Serial.print(temp[ii -(i+1)]);
+                }
+                Serial.println(" Case Two");
+                Tz = atof(temp);
+                flag = 3;
+                break;
+                
+          
+          case(1):
+                for(int ii = i + 1; ii <= i + 8; ii++){
+                  temp[ii - (i+1)] = buf[ii];
+                  Serial.print(temp[ii -(i+1)]);
+                }
+                Serial.println(" Case One");
+                Ty = atof(temp);
+                flag = 2;
+                break;
+                                
+          
+          case(0):
+                for(int ii = i + 1; ii <= i + 8; ii++){
+                  temp[ii - (i+1)] = buf[ii];
+                  Serial.print(temp[ii -(i+1)]);
+                }
+                Serial.println(" Case Zero");
+                Tx = atof(temp);
+                flag = 1;
+                break;
+                
+        }
+      }
+      //Serial.println("Why am I here");
+      
+    }
+    Serial.print("Final Values- Tx: ");
+    Serial.print(Tx);
+    Serial.print(" Ty: ");
+    Serial.print(Ty);
+    Serial.print(" Tz: ");
+    Serial.print(Tz);
+    Serial.print(" Rx: ");
+    Serial.print(Rx);
+    Serial.print(" Ry: ");
+    Serial.print(Ry);
+    Serial.print(" Rz: ");
+    Serial.println(Rz);
+    flag = 0;
+
+  
+    Serial.println("*******Done***********");
     delay(10000);
   
   }
