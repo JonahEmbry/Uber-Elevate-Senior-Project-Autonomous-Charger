@@ -1,8 +1,6 @@
-// Written by Jonah Embry
-// Updated: 4/5/2021
-// This the communications code for the Close Range System of the Uber Elevate Senior Capstone Design Project: Autonomous Charging Vehicle
-// This code waits for confirmation of position from the Long Range System, then plugs charger into port, then sends confirmation back to 
-// the Long Range System
+// Written by Jonah Embry and Jake Berkowitz
+// Updated: 4/7/2021
+// The code combines the CRS_COM, CV_Test_Code, and Jake_CV_Code. Should be the final version.
 // A status LED is included to display states and assist in trouble shooting
 // REMEMBER THAT THE ARDUINOS NEED TO SHARE A COMMON GROUND OR IT WILL NOT WORK
 
